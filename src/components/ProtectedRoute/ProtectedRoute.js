@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
 import { Route }from "react-router-dom";
-import {Redirect} from "react-router";
+import { Redirect } from "react-router";
 
 class ProtectedRoute extends Component {
   render() {

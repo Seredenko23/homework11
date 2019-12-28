@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Switch, Link} from "react-router-dom";
+import {BrowserRouter, Switch, Link, Route, Redirect} from "react-router-dom";
 import { connect } from "react-redux";
 import DummyComponent from "../DummyComponent/DummyComponent";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Signin from "../Signin/Signin";
 
 class Navigation extends Component {
   render() {
@@ -23,6 +24,9 @@ class Navigation extends Component {
           </ul>
         }
           <Switch>
+            <Route path={'/sign-in'}>
+              <Signin/>
+            </Route>
             <ProtectedRoute path='/main'>
               <DummyComponent text={'Main Page'}/>
             </ProtectedRoute>
@@ -32,6 +36,9 @@ class Navigation extends Component {
             <ProtectedRoute path='/team'>
               <DummyComponent text={'Team Page'}/>
             </ProtectedRoute>
+            <Route path={'/'}>
+              <Redirect to={'sign-in'}/>
+            </Route>
           </Switch>
         </nav>
       </BrowserRouter>
