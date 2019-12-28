@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch, Link} from "react-router-dom";
+import {BrowserRouter, Switch, Link} from "react-router-dom";
+import { connect } from "react-redux";
 import DummyComponent from "../DummyComponent/DummyComponent";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 class Navigation extends Component {
   render() {
     return (
       <BrowserRouter>
         <nav>
+        { this.props.isLoggedIn &&
           <ul>
             <li>
               <Link to="/main">main</Link>
@@ -18,16 +21,17 @@ class Navigation extends Component {
               <Link to="/team">Dashboard</Link>
             </li>
           </ul>
+        }
           <Switch>
-            <Route path='/main'>
+            <ProtectedRoute path='/main'>
               <DummyComponent text={'Main Page'}/>
-            </Route>
-            <Route path='/about'>
+            </ProtectedRoute>
+            <ProtectedRoute path='/about'>
               <DummyComponent text={'About Page'}/>
-            </Route>
-            <Route path='/team'>
+            </ProtectedRoute>
+            <ProtectedRoute path='/team'>
               <DummyComponent text={'Team Page'}/>
-            </Route>
+            </ProtectedRoute>
           </Switch>
         </nav>
       </BrowserRouter>
@@ -35,4 +39,10 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.isLoggedIn,
+  }
+};
+
+export default connect(mapStateToProps)(Navigation);
