@@ -4,24 +4,34 @@ import { connect } from "react-redux";
 import DummyComponent from "../DummyComponent/DummyComponent";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Signin from "../Signin/Signin";
+import './Navigation.css'
 
 class Navigation extends Component {
+
   render() {
+    let {isLoggedIn, user} = this.props;
     return (
       <BrowserRouter>
         <nav>
-        { this.props.isLoggedIn &&
-          <ul>
-            <li>
-              <Link to="/main">main</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/team">Dashboard</Link>
-            </li>
-          </ul>
+        { isLoggedIn &&
+          <div className="nav-bar flex-row">
+            <div className="navigation flex-row">
+              <div className="nav-link flex-row text-white">
+                <Link to="/main">Main</Link>
+              </div>
+              <div className="nav-link flex-row text-white">
+                <Link to="/about">About</Link>
+              </div>
+              <div className="nav-link flex-row text-white">
+                <Link to="/team">Team</Link>
+              </div>
+            </div>
+            <div className="user flex-row">
+              <p className="username text-white">
+                {`${user.first_name} ${user.last_name}`}
+              </p>
+            </div>
+          </div>
         }
           <Switch>
             <Route path={'/sign-in'}>
@@ -48,6 +58,7 @@ class Navigation extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     isLoggedIn: state.isLoggedIn,
   }
 };

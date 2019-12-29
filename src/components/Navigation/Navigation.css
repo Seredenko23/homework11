@@ -1,0 +1,33 @@
+.nav-bar {
+    justify-content: space-between;
+    background-color: #282c34;
+    height: 80px;
+}
+
+.text-white {
+    color: white;
+}
+
+.nav-link {
+    margin: 0 20px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.nav-link > a {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-link > a:visited {
+    color: orange;
+}
+
+.user {
+    height: 100%;
+    margin: 0 30px;
+    justify-content: center;
+    align-items: center;
+}

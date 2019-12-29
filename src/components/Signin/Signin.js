@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../redux/actions/actions";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
+import mockData from "../../data/MOCK_DATA"
 import './Signin.css'
 
 class Signin extends Component {
@@ -21,12 +22,15 @@ class Signin extends Component {
   };
 
   submitHandler = (event) => {
-    event.preventDefault();
+    let data = mockData;
     let { email, password } = this.state;
-    if(email === 'admin@gmail.com' && password === 'admin') {
-      this.props.history.push('/main');
-      this.props.loginUser();
-    }
+    event.preventDefault();
+    data.forEach(user => {
+      if(email === user.email && password === user.password) {
+        this.props.history.push('/main');
+        this.props.loginUser(user);
+      }
+    })
   };
 
   render() {
