@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { loginUser } from "../../redux/actions/actions";
+import { loginUser, loading } from "../../redux/actions/actions";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import mockData from "../../data/MOCK_DATA"
+import Spinner from "../Spinner/Spinner";
 import './Signin.css'
 
 class Signin extends Component {
@@ -21,14 +22,17 @@ class Signin extends Component {
     })
   };
 
-  submitHandler = (event) => {
-    let data = mockData;
-    let { email, password } = this.state;
+  submitHandler = async (event) => {
     event.preventDefault();
-    data.forEach(user => {
+    this.props.loading(true);
+    let data = await new Promise((resolve) => {
+      setTimeout(() => resolve(mockData), 3000)
+    });
+    let { email, password } = this.state;
+    await data.forEach(user => {
       if(email === user.email && password === user.password) {
-        this.props.history.push('/main');
         this.props.loginUser(user);
+        this.props.history.push('/main');
       }
     })
   };
@@ -55,6 +59,7 @@ class Signin extends Component {
           </label>
           <button type={'submit'}>Submit</button>
         </form>
+        <Spinner/>
       </div>
     );
   }
@@ -62,7 +67,8 @@ class Signin extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loginUser: bindActionCreators(loginUser, dispatch)
+    loginUser: bindActionCreators(loginUser, dispatch),
+    loading: bindActionCreators(loading, dispatch),
   }
 };
 

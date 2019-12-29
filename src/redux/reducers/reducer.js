@@ -1,8 +1,11 @@
-import { ACTION_LOGIN_USER, ACTION_LOGOUT_USER } from "../actions/actions";
+import {ACTION_LOGIN_USER,
+        ACTION_LOGOUT_USER,
+        ACTION_SET_LOADING_USER,} from "../actions/actions";
 
 const initialState = {
   user: {},
   isLoggedIn: false,
+  isLoading: false,
 };
 
 export const reducer = (state=initialState, action) => {
@@ -12,6 +15,12 @@ export const reducer = (state=initialState, action) => {
         ...state,
         user: action.payload.user,
         isLoggedIn: action.payload.isLoggedIn,
+        isLoading: false,
+      };
+    case ACTION_SET_LOADING_USER:
+      return {
+        ...state,
+        isLoading: action.payload,
       };
     case ACTION_LOGOUT_USER:
       return {
