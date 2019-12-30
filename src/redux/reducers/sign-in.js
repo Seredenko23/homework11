@@ -1,6 +1,6 @@
 import {ACTION_LOGIN_USER,
         ACTION_LOGOUT_USER,
-        ACTION_SET_LOADING_USER,} from "../actions/actions";
+        ACTION_SET_LOADING_USER,} from "../actions/sign-in";
 
 const initialState = {
   user: {},
@@ -8,14 +8,13 @@ const initialState = {
   isLoading: false,
 };
 
-export const reducer = (state=initialState, action) => {
+export const signIn = (state=initialState, action) => {
   switch (action.type) {
     case ACTION_LOGIN_USER:
       return {
         ...state,
         user: action.payload.user,
         isLoggedIn: action.payload.isLoggedIn,
-        isLoading: false,
       };
     case ACTION_SET_LOADING_USER:
       return {

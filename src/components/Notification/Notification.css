@@ -1,0 +1,15 @@
+.notification {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    align-items: center;
+    width: 140px;
+    height: 60px;
+    padding: 0 20px;
+    color: white;
+    border-radius: 3px;
+}
+
+.success {
+    background-color: green;
+}

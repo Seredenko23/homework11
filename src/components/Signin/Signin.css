@@ -1,6 +1,62 @@
 .sign-in-form {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.input-wrapper {
+    margin: 15px 0;
+    width: 100%;
+    align-items: start;
+}
+
+.sign-in {
+    background: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    height: 350px;
+    padding: 20px;
+    position: relative;
+    width: 350px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16),
+        0 3px 6px rgba(0,0,0,0.23);
+}
+
+.login-input {
+    padding: 3px 0;
+    margin: 3px 0;
+    font-size: 1.1em;
+    width: 100%;
+    height: 15px;
+    border: none;
+    border-bottom: 1px solid lightgray;
+}
+
+.login-input:focus {
+    outline: none;
+    border-bottom: 1px solid #00bf20;
+}
+
+input:-internal-autofill-selected {
+    background-color: white;
+}
+
+.submit-button {
+    width: 90px;
+    height: 30px;
+    border-radius: 4px;
+    font-size: 1.2em;
+    background-color: #00bf20;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+.submit-button:hover {
+    transition: .2s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16),
+        0 3px 6px rgba(0,0,0,0.23);
 }

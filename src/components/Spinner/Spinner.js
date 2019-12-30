@@ -14,7 +14,7 @@ class Spinner extends Component {
 
 function mapStateToProps(state) {
   return {
-    isLoading: state.isLoading,
+    isLoading: state.signIn.isLoading,
   };
 }
 

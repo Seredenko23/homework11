@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { loginUser, loading } from "../../redux/actions/actions";
+import { loginUser, loading } from "../../redux/actions/sign-in";
+import { showNotificationWithTimeout } from "../../redux/actions/notification";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import mockData from "../../data/MOCK_DATA"
@@ -33,31 +34,33 @@ class Signin extends Component {
       if(email === user.email && password === user.password) {
         this.props.loginUser(user);
         this.props.history.push('/main');
+        this.props.showNotificationWithTimeout('success', 'You logged in!')
       }
-    })
+    });
+    this.props.loading(false);
   };
 
   render() {
     return (
-      <div>
+      <div className='sign-in flex-column'>
         <form onSubmit={this.submitHandler}
               className="sign-in-form">
           <h3>Login</h3>
-          <label>
-            Email
-            <input type="email"
+          <div className='input-wrapper flex-column'>
+            <label className='login-input-label' htmlFor='email'>Email</label>
+            <input className='login-input'
+                   type="email"
                    name='email'
-                   placeholder={'Enter your email...'}
                    onChange={this.changeHandle}/>
-          </label>
-          <label>
-            Password
-            <input type="password"
+          </div>
+          <div className='input-wrapper flex-column'>
+            <label className='login-input-label' htmlFor='password'>Password</label>
+            <input className='login-input'
+                   type="password"
                    name='password'
-                   placeholder={'Enter your password...'}
                    onChange={this.changeHandle}/>
-          </label>
-          <button type={'submit'}>Submit</button>
+          </div>
+          <button className='submit-button' type={'submit'}>Submit</button>
         </form>
         <Spinner/>
       </div>
@@ -69,6 +72,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loginUser: bindActionCreators(loginUser, dispatch),
     loading: bindActionCreators(loading, dispatch),
+    showNotificationWithTimeout: bindActionCreators(showNotificationWithTimeout, dispatch)
   }
 };
 
