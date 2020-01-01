@@ -21,7 +21,7 @@
     color: white;
 }
 
-.nav-link > a:visited {
+.nav-link > a:active {
     color: orange;
 }
 
@@ -30,4 +30,23 @@
     margin: 0 30px;
     justify-content: center;
     align-items: center;
+}
+
+.log-out {
+    cursor: pointer;
+    outline: none;
+    font-size: 1.1em;
+    color: white;
+    margin: 0 10px;
+    background-color: transparent;
+    border: orange 1px solid;
+}
+
+.log-out:hover {
+    transition: .2s ease-out;
+    background-color: orange;
+}
+
+.username, .log-out {
+    font-size: 1.1em;
 }

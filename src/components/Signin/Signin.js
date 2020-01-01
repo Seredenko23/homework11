@@ -30,13 +30,18 @@ class Signin extends Component {
       setTimeout(() => resolve(mockData), 3000)
     });
     let { email, password } = this.state;
+    let logged = false;
     await data.forEach(user => {
       if(email === user.email && password === user.password) {
+        logged = true;
         this.props.loginUser(user);
         this.props.history.push('/main');
         this.props.showNotificationWithTimeout('success', 'You logged in!')
       }
     });
+    if(!logged) {
+      this.props.showNotificationWithTimeout('error', 'You enter wrong email or password!')
+    }
     this.props.loading(false);
   };
 

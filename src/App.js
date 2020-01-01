@@ -20,10 +20,4 @@ function App() {
   );
 }
 
-// function mapStateToProps(state) {
-//   return {
-//
-//   }
-// }
-
 export default App;

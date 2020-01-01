@@ -14,12 +14,15 @@
 }
 
 .sign-in {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background: #fff;
     border-radius: 2px;
     display: inline-block;
     height: 350px;
     padding: 20px;
-    position: relative;
     width: 350px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16),
         0 3px 6px rgba(0,0,0,0.23);
@@ -38,10 +41,6 @@
 .login-input:focus {
     outline: none;
     border-bottom: 1px solid #00bf20;
-}
-
-input:-internal-autofill-selected {
-    background-color: white;
 }
 
 .submit-button {

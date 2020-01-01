@@ -1,18 +1,24 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Switch, Link, Route, Redirect} from "react-router-dom";
 import { connect } from "react-redux";
+import { logoutUser } from "../../redux/actions/sign-in"
 import DummyComponent from "../DummyComponent/DummyComponent";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Signin from "../Signin/Signin";
 import './Navigation.css'
+import {bindActionCreators} from "redux";
 
 class Navigation extends Component {
+
+  logoutHandler = () => {
+    this.props.logoutUser();
+  };
 
   render() {
     let {isLoggedIn, user} = this.props;
     return (
       <BrowserRouter>
-        <nav>
+        <div>
         { isLoggedIn &&
           <div className="nav-bar flex-row">
             <div className="navigation flex-row">
@@ -30,6 +36,9 @@ class Navigation extends Component {
               <p className="username text-white">
                 {`${user.first_name} ${user.last_name}`}
               </p>
+              <button onClick={this.logoutHandler} className="log-out">
+                Log out
+              </button>
             </div>
           </div>
         }
@@ -50,7 +59,7 @@ class Navigation extends Component {
               <Redirect to={'sign-in'}/>
             </Route>
           </Switch>
-        </nav>
+        </div>
       </BrowserRouter>
     );
   }
@@ -63,4 +72,10 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps)(Navigation);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logoutUser: bindActionCreators(logoutUser, dispatch)
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
