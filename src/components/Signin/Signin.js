@@ -48,24 +48,45 @@ class Signin extends Component {
   render() {
     return (
       <div className='sign-in flex-column'>
-        <form onSubmit={this.submitHandler}
-              className="sign-in-form">
+        <form
+          onSubmit={this.submitHandler}
+          className="sign-in-form"
+        >
           <h3>Login</h3>
           <div className='input-wrapper flex-column'>
-            <label className='login-input-label' htmlFor='email'>Email</label>
-            <input className='login-input'
-                   type="email"
-                   name='email'
-                   onChange={this.changeHandle}/>
+            <label
+              className='login-input-label'
+              htmlFor='email'
+            >
+              Email
+            </label>
+            <input
+              className='login-input'
+              type="email"
+              name='email'
+              onChange={this.changeHandle}
+            />
           </div>
           <div className='input-wrapper flex-column'>
-            <label className='login-input-label' htmlFor='password'>Password</label>
-            <input className='login-input'
-                   type="password"
-                   name='password'
-                   onChange={this.changeHandle}/>
+            <label
+              className='login-input-label'
+              htmlFor='password'
+            >
+              Password
+            </label>
+            <input
+              className='login-input'
+              type="password"
+              name='password'
+              onChange={this.changeHandle}
+            />
           </div>
-          <button className='submit-button' type={'submit'}>Submit</button>
+          <button
+            className='submit-button'
+            type={'submit'}
+          >
+            Submit
+          </button>
         </form>
         <Spinner/>
       </div>

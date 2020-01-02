@@ -44,7 +44,7 @@ class Navigation extends Component {
         }
           <Switch>
             <Route path={'/sign-in'}>
-              <Signin/>
+              {this.props.isLoggedIn ? <Redirect to={'/main'}/> : (<Signin/>)}
             </Route>
             <ProtectedRoute path='/main'>
               <DummyComponent text={'Main Page'}/>
