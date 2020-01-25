@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { loginUser, loading } from "../../redux/actions/sign-in";
 import { showNotificationWithTimeout } from "../../redux/actions/notification";
 import { bindActionCreators } from "redux";
+import {getData} from "../../service/api";
 import { withRouter } from "react-router";
-import mockData from "../../data/MOCK_DATA"
 import Spinner from "../Spinner/Spinner";
 import './Signin.css'
 
@@ -17,6 +17,13 @@ class Signin extends Component {
     }
   }
 
+  componentDidMount() {
+    if (sessionStorage.getItem('loggedUser')) {
+      const user = sessionStorage.getItem('loggedUser');
+      this.props.loginUser(JSON.parse(user));
+    }
+  }
+
   changeHandle = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -26,14 +33,13 @@ class Signin extends Component {
   submitHandler = async (event) => {
     event.preventDefault();
     this.props.loading(true);
-    let data = await new Promise((resolve) => {
-      setTimeout(() => resolve(mockData), 3000)
-    });
+    let data = await getData();
     let { email, password } = this.state;
     let logged = false;
     await data.forEach(user => {
       if(email === user.email && password === user.password) {
         logged = true;
+        sessionStorage.setItem('loggedUser', JSON.stringify(user));
         this.props.loginUser(user);
         this.props.history.push('/main');
         this.props.showNotificationWithTimeout('success', 'You logged in!')

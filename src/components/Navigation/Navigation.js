@@ -11,6 +11,7 @@ import {bindActionCreators} from "redux";
 class Navigation extends Component {
 
   logoutHandler = () => {
+    sessionStorage.clear();
     this.props.logoutUser();
   };
 
